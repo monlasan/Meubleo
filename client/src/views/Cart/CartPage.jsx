@@ -67,7 +67,7 @@ function CartPage() {
             </button>
           </div>
 
-          <button className='p-3 px-4 mt-1.5 w-fit justify-self-end rounded-md hover:bg-indigo-100 hover:border-indigo-300 hover:text-indigo-800 text-sm border-2 border-gray-500 text-black'>
+          <button className='p-3 bg-white px-4 mt-1.5 w-fit justify-self-end rounded-md hover:bg-indigo-100 hover:border-indigo-300 hover:text-indigo-800 text-sm border border-gray-300 text-gray-600'>
             Procéder au paiement
           </button>
         </div>

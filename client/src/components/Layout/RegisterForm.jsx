@@ -1,8 +1,12 @@
+import RegisterLogic from '../../views/Register/RegisterLogic';
 import { Formik, Form } from 'formik';
 import TextField from '../TextField';
 import * as Yup from 'yup';
 import { FaRedo } from 'react-icons/fa';
 import Barline from '../../assets/images/bar-line.jpg';
+
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
   const validate = Yup.object({
@@ -23,6 +27,35 @@ function Register() {
       .required('Confirmation de mot de passe requise'),
   });
 
+  let navigate = useNavigate();
+  async function RegisterLogic(userInfo) {
+    const firstName = userInfo.firstName;
+    const lastName = userInfo.lastName;
+    const username = `${firstName} ${lastName}`;
+    const email = userInfo.email;
+    const password = userInfo.password;
+    //2:29:00 privateData
+    const serverURL = 'http://localhost:5000';
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    try {
+      const { data } = await axios.post(
+        `${serverURL}/api/auth/register`,
+        { username, email, password },
+        config
+      );
+
+      localStorage.setItem('authToken', data.token);
+      navigate(`/`, { replace: true });
+    } catch (error) {
+      console.log(error.response.data.error);
+    }
+  }
+
   return (
     <Formik
       initialValues={{
@@ -34,7 +67,7 @@ function Register() {
       }}
       validationSchema={validate}
       onSubmit={(values) => {
-        console.log(values);
+        RegisterLogic(values);
       }}
     >
       {({ isSubmitting }) => (
@@ -57,14 +90,13 @@ function Register() {
               <div className='flex mt-6 items-center justify-between gap-2'>
                 <button
                   type='submit'
-                  disabled={isSubmitting}
-                  className='bg-gray-800 text-white py-1.5 px-3 rounded-md'
+                  className='bg-gray-800 border-2 border-gray-900 text-white py-1 px-3 rounded-md'
                 >
                   S'inscrire
                 </button>
                 <button
                   type='reset'
-                  className='text-white bg-red-600 p-2.5 rounded-md'
+                  className='text-white border-2 border-red-700 bg-red-600 p-2 rounded-md'
                 >
                   <FaRedo />
                 </button>

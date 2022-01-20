@@ -1,0 +1,35 @@
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "luapdever",
+  "email": "luapdever511@gmail.com",
+  "password": "mdppaul"
+}
+
+###
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "ademonlasnn@gmail.com",
+  "password": "illuminatie"
+}
+###
+GET http://localhost:5000/api/private
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTdmMmNhM2U1OWVmODJkNzMwMjVkYyIsImlhdCI6MTY0MjU5MDkyMiwiZXhwIjoxNjQyNTkxNTIyfQ.APMoeCYDnWdx4XHAoSxON4iArdlUK3ToRTqsqORq3so
+###
+POST http://localhost:5000/api/auth/forgotpassword
+Content-Type: application/json
+
+{
+  "email": "luapdever511@gmail.com"
+}
+###
+PUT http://localhost:5000/api/auth/resetpassword/c63a1226acbd47b7326927caaa2581a91943aac4
+Content-Type: application/json
+
+{
+  "password": "mdppaul"
+}

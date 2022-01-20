@@ -10,16 +10,24 @@ import Profile from './views/Profile/ProfilePage';
 import ProductDetail from './views/ProductDetail/ProductDetailPage';
 import Cart from './views/Cart/CartPage';
 
+import PrivateRoute from './routes/PrivateRoute';
+import NotLogged from './routes/IsLogged';
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/product' element={<ProductDetail />} />
-        <Route path='/cart' element={<Cart />} />
+        <Route element={<NotLogged />}>
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
+        </Route>
+
+        <Route element={<PrivateRoute />}>
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/product' element={<ProductDetail />} />
+          <Route path='/cart' element={<Cart />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

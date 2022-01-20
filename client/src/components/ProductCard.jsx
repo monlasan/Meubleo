@@ -24,9 +24,11 @@ function DesignCard() {
         </div>
       </div>
       <br className='mb-2' /> */}
+
       <span className='text-md tracking-wider text-indigo-800 font-medium'>
-        2000Fcfa
+        Ramen Ichiraku
       </span>
+      <span className='text-sm tracking-wider text-gray-800'>2000Fcfa</span>
       <div className='w-full grid'>
         <button className='bg-black text-white font-medium text-sm w-fit justify-self-end px-2 py-1 rounded-md'>
           Acheter

@@ -18,7 +18,8 @@ Content-Type: application/json
 ###
 GET http://localhost:5000/api/private
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTdmMmNhM2U1OWVmODJkNzMwMjVkYyIsImlhdCI6MTY0MjU5MDkyMiwiZXhwIjoxNjQyNTkxNTIyfQ.APMoeCYDnWdx4XHAoSxON4iArdlUK3ToRTqsqORq3so
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZGI3Yjc3ZjRmZTRjYzdjN2E1ZTlmOSIsImlhdCI6MTY0Mjc5MTczOCwiZXhwIjoxNjQyNzkyMzM4fQ.CdClQbIOGrFAb-qedyMrmRddniCu4XlkwIECL84TBsc
+
 ###
 POST http://localhost:5000/api/auth/forgotpassword
 Content-Type: application/json
@@ -33,3 +34,11 @@ Content-Type: application/json
 {
   "password": "mdppaul"
 }
+
+###
+GET http://localhost:5000/api/users
+###
+GET http://localhost:5000/api/user/61db25f23d1a5163dadc3df4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZGI3Yjc3ZjRmZTRjYzdjN2E1ZTlmOSIsImlhdCI6MTY0Mjc5MTczOCwiZXhwIjoxNjQyNzkyMzM4fQ.CdClQbIOGrFAb-qedyMrmRddniCu4XlkwIECL84TBsc
+###

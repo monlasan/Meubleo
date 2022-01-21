@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
-const isLogged = localStorage.getItem('authToken') ? true : false;
+const logged = localStorage.getItem('authToken') ? true : false;
 
-function IsLogged(isLogged) {
-  return isLogged ? <Navigate replace to='/' /> : <Outlet />;
+function NotLogged(isLogged) {
+  return logged ? <Navigate replace to='/' /> : <Outlet />;
 }
 
-export default IsLogged;
+export default NotLogged;

@@ -14,6 +14,8 @@ app.use(express.json());
 
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/private', require('./routes/private'));
+app.use('/api/', require('./routes/apis/users'));
+// app.use('/api/refreshtoken', require('./routes/token'));
 
 // errorHandler is the last piece of middleware
 app.use(errorHandler);

@@ -3,6 +3,8 @@ const ErrorResponse = require('../utils/errorResponse');
 const sendEmail = require('../utils/sendEmail');
 const crypto = require('crypto');
 
+let refreshTokens = [];
+
 exports.register = async (req, res, next) => {
   const { username, email, password } = req.body;
 
@@ -12,8 +14,7 @@ exports.register = async (req, res, next) => {
       email,
       password,
     });
-
-    sendToken(user, 201, res);
+    sendTokens(user, 201, res);
   } catch (error) {
     next(error);
   }
@@ -39,7 +40,7 @@ exports.login = async (req, res, next) => {
       return next(new ErrorResponse('Invalid credentials', 401));
     }
 
-    sendToken(user, 200, res);
+    sendTokens(user, 200, res);
   } catch (error) {
     next(error);
   }
@@ -118,10 +119,13 @@ exports.resetpassword = async (req, res, next) => {
   }
 };
 
-const sendToken = (user, statusCode, res) => {
+const sendTokens = (user, statusCode, res) => {
   const token = user.getSignedToken();
+  const refreshToken = user.getRefreshToken();
+  refreshTokens.push(refreshToken);
   res.status(statusCode).json({
     success: true,
     token,
+    refreshToken,
   });
 };

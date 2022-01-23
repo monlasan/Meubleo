@@ -51,14 +51,8 @@ function Navbar() {
         <NavLink text='Profile' page='/profile' />
         <NavLink text='Panier' page='/cart' />
         <NavLink text='DescProduit' page='/product' />
+        <NavLink text='ADMIN-PANEL' page='/dashboard' />
       </ul>
-      {localStorage.getItem('authToken') ? (
-        <div className='flex justify-center mx-auto mt-4 bg-green-700 text-white p-4 rounded-md w-fit'>
-          You are connected
-        </div>
-      ) : (
-        <span>Not connected</span>
-      )}
     </div>
   );
 }

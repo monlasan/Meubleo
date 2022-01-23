@@ -9,6 +9,7 @@ import Login from './views/Login/LoginPage';
 import Profile from './views/Profile/ProfilePage';
 import ProductDetail from './views/ProductDetail/ProductDetailPage';
 import Cart from './views/Cart/CartPage';
+import Dashboard from './views/Dashboard/DashboardPage';
 
 import PrivateRoute from './routes/PrivateRoute';
 import NotLogged from './routes/IsLogged';
@@ -27,6 +28,7 @@ ReactDOM.render(
           <Route path='/profile' element={<Profile />} />
           <Route path='/product' element={<ProductDetail />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/dashboard' element={<Dashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>

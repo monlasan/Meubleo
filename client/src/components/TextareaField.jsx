@@ -1,6 +1,6 @@
 import { ErrorMessage, useField } from 'formik';
 
-function TextField({ label, ...props }) {
+function TextAreaField({ label, ...props }) {
   const [field, meta] = useField(props);
   return (
     <div className='mb-2'>
@@ -8,14 +8,14 @@ function TextField({ label, ...props }) {
         {label}
       </label>
       <br />
-      <input
-        autoComplete='off'
+
+      <textarea
         className={`bg-gray-50 focus:outline-none w-full p-1.5 rounded-md border ${
           meta.touched && meta.error && 'border-red-500'
         } `}
         {...field}
         {...props}
-      />
+      ></textarea>
       <ErrorMessage
         component='div'
         name={field.name}
@@ -25,4 +25,4 @@ function TextField({ label, ...props }) {
   );
 }
 
-export default TextField;
+export default TextAreaField;

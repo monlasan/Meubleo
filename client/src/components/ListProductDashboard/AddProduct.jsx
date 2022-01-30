@@ -1,11 +1,17 @@
+import { useState, useRef } from 'react';
 import { Formik, Form } from 'formik';
 import { FaRedo } from 'react-icons/fa';
 import TextField from '@/components/TextField';
+import FileInputField from '@/components/FileInputField';
 import TextareaField from '@/components/TextareaField';
 import * as Yup from 'yup';
+import axios from 'axios';
 
-function AddProduct() {
-  const validate = Yup.object({
+function AddProduct({ showMe }) {
+  const [productImage, setproductImage] = useState('');
+  const [infoFromServer, setInfoFromServer] = useState({});
+  const fileinputref = useRef();
+  const validate = Yup.object().shape({
     productName: Yup.string()
       .max(50, '50 caractères au plus')
       .required('Champ requis'),
@@ -15,8 +21,16 @@ function AddProduct() {
   });
 
   return (
-    <div className='w-full min-h-screen z-[1000] absolute bg-black/60 grid place-items-center'>
-      <div className='p-3 bg-white relative border pointer-events-auto shadow-md rounded-md'>
+    <div
+      onClick={(e) => {
+        showMe();
+      }}
+      className='w-full min-h-screen z-[1000] absolute cursor-pointer bg-black/60 grid place-items-center'
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className='p-3 bg-white relative border my-10 pointer-events-auto shadow-md rounded-md'
+      >
         <h3 className='font-medium absolute text-white -translate-y-9 translate-x-[-50%] left-[50%] text-d p-3 px-6 shadow-md shadow-indigo-500/50 rounded-md bg-indigo-500 w-[max-content]'>
           Ajouter produit
         </h3>
@@ -27,20 +41,65 @@ function AddProduct() {
             productDescription: '',
             productPrice: 0,
             numberInStock: 0,
+            photo: '',
           }}
           validationSchema={validate}
-          onSubmit={(values) => {
-            console.log(
-              values.productName +
-                `\n` +
-                values.productDescription +
-                `\n` +
-                values.productPrice +
-                `\n` +
-                values.numberInStock +
-                `\n` +
-                'Product Added with success'
-            );
+          onSubmit={async (values, { resetForm }) => {
+            if (!productImage) {
+              return console.error('Il faut une image');
+            }
+            let formData = new FormData();
+            formData.append('productName', values.productName);
+            formData.append('productDescription', values.productDescription);
+            formData.append('productPrice', values.productPrice);
+            formData.append('numberInStock', values.numberInStock);
+            formData.append('photo', productImage);
+            try {
+              await axios
+                .post('http://localhost:5000/api/products/', formData, {
+                  headers: {
+                    'Content-Type': 'multipart/form-data',
+                  },
+                })
+                .then((response) => {
+                  console.log(response);
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+
+              // fetch('http://localhost:5000/api/products', {
+              //   method: 'POST',
+              //   body: formData,
+              // })
+              //   .then((result) => {
+              //     console.log('File Sent Successful');
+              //   })
+              //   .catch((err) => {
+              //     console.log(err.message);
+              //   });
+
+              // setInfoFromServer('Sent from server' + '\n' + res.data);
+              // console.log(
+              //   formData.get('productName') +
+              //     `\n` +
+              //     formData.get('productDescription') +
+              //     `\n` +
+              //     formData.get('productPrice') +
+              //     `\n` +
+              //     formData.get('numberInStock') +
+              //     `\n` +
+              //     formData.get('photo') +
+              //     `\n` +
+              //     'Product Added with success'
+              // );
+              // fileinputref.current.value = '';
+              // resetForm();
+              console.info('FORM SUBMITTED');
+              console.log(infoFromServer);
+            } catch (err) {
+              console.error('Something Went Wrong', err);
+            }
           }}
         >
           {() => (
@@ -50,15 +109,14 @@ function AddProduct() {
               <TextField label='Prix' name='productPrice' type='number' />
               <TextField label='En stock' name='numberInStock' type='number' />
               <TextareaField name='productDescription' label='Description' />
-              <label htmlFor='file' className='text-gray-700'>
-                Image du produit
-              </label>
-              <input
+              <FileInputField
+                setImage={setproductImage}
+                reference={fileinputref}
+                label='Image produit'
+                name='photo'
                 type='file'
-                name=''
-                id='file'
-                className='file:bg-indigo-500 overflow-hidden file:border-0 file:p-2 pb-2 file:rounded-md file:text-white file:shadow-sm file:shadow-indigo-500/80'
               />
+
               <br className='mb-3' />
               <div className='place-self-end gap-2 flex items-center'>
                 <button

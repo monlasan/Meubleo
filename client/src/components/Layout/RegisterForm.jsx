@@ -72,7 +72,7 @@ function Register() {
     >
       {({ isSubmitting }) => (
         <div className='bg-white relative w-fit border overflow-hidden rounded-md shadow-md'>
-          <h1 className='text-4xl absolute left-[50%] font-bold drop-shadow top-5 -translate-x-[50%] text-white'>
+          <h1 className='text-3xl absolute left-[50%] font-bold drop-shadow top-6 -translate-x-[50%] text-white'>
             S'inscrire
           </h1>
           <img src={Barline} className='object-cover w-full h-20' alt='' />

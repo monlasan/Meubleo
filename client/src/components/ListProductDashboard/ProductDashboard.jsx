@@ -26,12 +26,12 @@ function ProductDashboard() {
         </form>
       </div>
       <div className='flex gap-1'>
-        <button className='p-2 text-white rounded-md bg-blue-900'>
-          <FaPen className='' />
+        <button className='p-2 text-white rounded-md bg-blue-800 hover:bg-blue-900'>
+          <FaPen />
         </button>
 
-        <button className='p-2 text-white rounded-md bg-red-600'>
-          <FaTrashAlt className='' />
+        <button className='p-2 text-white rounded-md bg-red-600 hover:bg-red-700'>
+          <FaTrashAlt />
         </button>
       </div>
     </div>

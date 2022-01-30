@@ -42,3 +42,15 @@ GET http://localhost:5000/api/user/61db25f23d1a5163dadc3df4
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZGI3Yjc3ZjRmZTRjYzdjN2E1ZTlmOSIsImlhdCI6MTY0Mjc5MTczOCwiZXhwIjoxNjQyNzkyMzM4fQ.CdClQbIOGrFAb-qedyMrmRddniCu4XlkwIECL84TBsc
 ###
+GET http://localhost:5000/api/products
+###
+GET http://localhost:5000/api/products/65eze
+###
+POST http://localhost:5000/api/products
+Content-Type: application/json
+
+{
+  "productName": "Riopop",
+  "description": "Soft rlimits too low",
+  "price": 5000,
+}

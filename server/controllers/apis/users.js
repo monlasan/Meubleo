@@ -3,7 +3,7 @@ const ErrorResponse = require('../../utils/errorResponse');
 
 exports.getAllUsers = async (req, res, next) => {
   try {
-    let users = await User.find()
+    await User.find()
       .exec()
       .then((docs) => {
         res.status(200).json(docs);

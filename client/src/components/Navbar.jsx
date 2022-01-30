@@ -1,8 +1,11 @@
 import NavLink from './design/NavLink';
 import Barline from '../assets/images/bar-line.jpg';
+import CartButton from '@/components/CartButton/CartButton';
 import { FaSearch, FaShoppingCart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 function Navbar() {
+  // const [showCartModal, setShowCartModal] = useState(false);
+
   return (
     <div>
       <nav className='bg-white shadow-sm shadow-gray-120 p-2'>
@@ -30,12 +33,7 @@ function Navbar() {
             <button className='text-indigo-800 py-1 px-2 w-30 md: rounded-md border border-indigo-800'>
               <Link to='/login'>Se connecter</Link>
             </button>
-            <button className='text-white bg-black w-24 h-8 justify-between flex px-3 items-center rounded-md'>
-              <div>
-                <FaShoppingCart />
-              </div>
-              <div className='font-semibold'>229f</div>
-            </button>
+            <CartButton />
           </div>
           {/* <ul className='hidden lg:flex'>
             <NavLink text='Accueil' page='/' />

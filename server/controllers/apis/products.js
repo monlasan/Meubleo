@@ -1,6 +1,5 @@
 const Product = require('../../models/Product');
 const crypto = require('crypto');
-const path = require('path');
 const ErrorResponse = require('../../utils/errorResponse');
 
 exports.getAllProducts = async (req, res, next) => {
@@ -30,7 +29,7 @@ exports.getProduct = async (req, res, next) => {
 };
 
 exports.addProduct = async (req, res, next) => {
-  console.log(req.files);
+  // console.log(req.files);
   if (req.files === null) {
     return res.status(400).json({
       msg: 'No product added',
@@ -40,7 +39,7 @@ exports.addProduct = async (req, res, next) => {
     req.body;
   const productImg = req.files.photo;
   productImg.name = crypto.randomBytes(10).toString('hex');
-  productImagePath = `uploads/products/${productImg.name}`;
+  productImagePath = `uploads/products/${productImg.name}.jpg`;
   const pictureURI = `${__dirname}/../../uploads/products/${productImg.name}.jpg`;
   productImg.mv(pictureURI);
   try {
@@ -53,10 +52,16 @@ exports.addProduct = async (req, res, next) => {
     });
 
     await newProduct.save();
-    res.status(200).json({
-      fileName: productImg.name,
-      filePath: `/uploads/products/${productImg.name}`,
-    });
+    // res.status(200).json({
+    //   productName: productName,
+    //   description: productDescription,
+    //   price: productPrice,
+    //   quantity: numberInStock,
+    //   pictureName: productImg.name,
+    //   pictureURI: `/uploads/products/${productImg.name}`,
+    //   newProduct,
+    // });
+    res.status(200).json(newProduct);
   } catch (error) {
     next(error);
   }

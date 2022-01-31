@@ -14,6 +14,7 @@ app.use(cors());
 app.use(fileUpload());
 app.use(express.json());
 
+app.use(express.static('./'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/private', require('./routes/private'));
 app.use('/api/users', require('./routes/apis/users'));

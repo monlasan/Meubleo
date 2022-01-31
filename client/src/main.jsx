@@ -19,6 +19,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />} />
+
         <Route element={<NotLogged />}>
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
@@ -26,10 +27,24 @@ ReactDOM.render(
 
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
-          <Route path='/product' element={<ProductDetail />} />
+          <Route path='/product/:id' element={<ProductDetail />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/dashboard' element={<Dashboard />} />
         </Route>
+        <Route
+          path='*'
+          element={
+            <div className='w-full text-center min-h-screen bg-gray-100 grid place-items-center'>
+              <div>
+                <h1 className='text-4xl'>
+                  ERROR <span className='text-indigo-800'>404</span>
+                </h1>
+                <br />
+                <p className='text-indigo-800'>Il n'y a rien ici :P</p>
+              </div>
+            </div>
+          }
+        />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

@@ -1,15 +1,18 @@
-import ProductImage from '@/assets/images/product_img.jpg';
-import { FaHeart } from 'react-icons/fa';
-import { FaComment } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
-function DesignCard() {
+function DesignCard({ productInfos }) {
   return (
     <div className='grid max-w-[260px] sm:max-w-full bg-white p-4 border border-gray-200 rounded-md'>
-      <img
-        src={ProductImage}
-        alt='Image'
-        className=' h-40 rounded-md object-cover'
-      />
+      <Link
+        to={`/product/${productInfos._id}`}
+        className='bg-indigo-700 rounded-md overflow-hidden'
+      >
+        <img
+          src={`http://localhost:5000/${productInfos.pictureURI}`}
+          alt='Image'
+          className='h-40 object-cover bg-indigo-600 hover:opacity-80 transition-opacity duration-300'
+        />
+      </Link>
       <br className='mb-2' />
       {/* <div className='flex gap-2 items-center'>
         <img
@@ -26,9 +29,11 @@ function DesignCard() {
       <br className='mb-2' /> */}
 
       <span className='text-md tracking-wider text-indigo-800 font-medium'>
-        Ramen Ichiraku
+        {productInfos.productName}
       </span>
-      <span className='text-sm tracking-wider text-gray-800'>2000Fcfa</span>
+      <span className='text-sm tracking-wider text-gray-800'>
+        {productInfos.price}Fcfa
+      </span>
       <div className='w-full grid'>
         <button className='bg-black text-white font-medium text-sm w-fit justify-self-end px-2 py-1 rounded-md'>
           Acheter

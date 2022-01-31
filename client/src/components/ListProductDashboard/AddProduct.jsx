@@ -1,3 +1,4 @@
+import { useProductStore } from '@/stores/products.store';
 import { useState, useRef } from 'react';
 import { Formik, Form } from 'formik';
 import { FaRedo } from 'react-icons/fa';
@@ -9,7 +10,8 @@ import axios from 'axios';
 
 function AddProduct({ showMe }) {
   const [productImage, setproductImage] = useState('');
-  const [infoFromServer, setInfoFromServer] = useState({});
+  const addNewProduct = useProductStore((state) => state.addProduct);
+
   const fileinputref = useRef();
   const validate = Yup.object().shape({
     productName: Yup.string()
@@ -62,41 +64,16 @@ function AddProduct({ showMe }) {
                   },
                 })
                 .then((response) => {
-                  console.log(response);
+                  console.log(response.data);
+                  addNewProduct(response.data);
                 })
+
                 .catch((error) => {
                   console.log(error);
                 });
-
-              // fetch('http://localhost:5000/api/products', {
-              //   method: 'POST',
-              //   body: formData,
-              // })
-              //   .then((result) => {
-              //     console.log('File Sent Successful');
-              //   })
-              //   .catch((err) => {
-              //     console.log(err.message);
-              //   });
-
-              // setInfoFromServer('Sent from server' + '\n' + res.data);
-              // console.log(
-              //   formData.get('productName') +
-              //     `\n` +
-              //     formData.get('productDescription') +
-              //     `\n` +
-              //     formData.get('productPrice') +
-              //     `\n` +
-              //     formData.get('numberInStock') +
-              //     `\n` +
-              //     formData.get('photo') +
-              //     `\n` +
-              //     'Product Added with success'
-              // );
-              // fileinputref.current.value = '';
-              // resetForm();
+              fileinputref.current.value = '';
+              resetForm();
               console.info('FORM SUBMITTED');
-              console.log(infoFromServer);
             } catch (err) {
               console.error('Something Went Wrong', err);
             }

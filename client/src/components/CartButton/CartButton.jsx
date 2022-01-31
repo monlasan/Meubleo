@@ -10,7 +10,7 @@ function CartButton({ props }) {
         <FaShoppingCart />
       </div>
       <div className='font-semibold'>229f</div>
-      <div className='bg-white text-black top-0 right-0 border-2 mt-10 shadow-md absolute rounded-md '>
+      <div className='bg-white hidden text-black top-0 right-0 border-2 mt-10 shadow-md absolute rounded-md '>
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel, eius?
       </div>
     </button>

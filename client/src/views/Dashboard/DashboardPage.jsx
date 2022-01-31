@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import Navbar from '@/components/Navbar';
-import ProductDashboard from '@/components/ListProductDashboard/ProductDashboard';
+import ProductsDashboard from '@/components/ListProductDashboard/ProductsDashboard';
 import AddProductModal from '@/components/ListProductDashboard/AddProduct';
 import { FaPlus } from 'react-icons/fa';
 
 function DashboardPage() {
   const [ToggleModalAddProduct, setToggleModalAddProduct] = useState(false);
-  // const showModalAddProduct = () => {};
 
   return (
     <div className='bg-gray-100/80 min-h-screen'>
@@ -27,7 +26,7 @@ function DashboardPage() {
             Ajouter produit
           </button>
 
-          <ProductDashboard />
+          <ProductsDashboard />
         </div>
       </main>
     </div>
